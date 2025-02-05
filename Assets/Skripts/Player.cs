@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource damageSound;
+    [SerializeField] private AudioSource missAttack;
+    [SerializeField] private AudioSource attackMob;
     [SerializeField] private float speed = 3f; // скорость движения
     [SerializeField] private int health; 
     [SerializeField] private float jumpForce = 15f; // сила прыжка
@@ -133,14 +136,21 @@ public class Player : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(attackpos.position, attackRange, enemy);
 
+        if (colliders.Length == 0)
+            missAttack.Play();
+        else
+        attackMob.Play();
+
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].GetComponent<Entity>().GetDamage();
+            StartCoroutine(EnemyOnAttack(colliders[i]));
         }
     }
     public void GetDamage()
     {
         lives -= 1;
+        damageSound.Play();
         Debug.Log(lives);
     }
     private IEnumerator AttackAnimation()
@@ -152,6 +162,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isRecharged = true;
+    }
+
+    private IEnumerator EnemyOnAttack(Collider2D enemy)
+    {
+        SpriteRenderer enemyColor = enemy.GetComponentInChildren<SpriteRenderer>();
+        enemyColor.color = new Color(1f, 0.4375f, 0.4375f);
+        yield return new WaitForSeconds(0.2f);
+        enemyColor.color = new Color(1, 1, 1);
     }
 }
 
