@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private AudioSource jumpSound;
     [SerializeField] private float speed = 3f; // скорость движения
     [SerializeField] private int health; 
     [SerializeField] private float jumpForce = 15f; // сила прыжка
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        jumpSound.Play();
     }
     private void OnDrawGizmosSelected()
     {
