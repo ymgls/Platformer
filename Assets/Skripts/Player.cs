@@ -2,14 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 3f; // скорость движения
-    [SerializeField] private int lives = 5; // скорость движения
+    [SerializeField] private int health; 
     [SerializeField] private float jumpForce = 15f; // сила прыжка
     private bool isGrounded = false;
 
+    [SerializeField] private Image[] hearts;
+
+    [SerializeField] private Sprite aliveHeart;
+    [SerializeField] private Sprite deadHeart;
     public static Player Instance { get; set; }
 
     private Animator anim;
@@ -23,8 +29,11 @@ public class Player : MonoBehaviour
     public float attackRange;
     public LayerMask enemy;
 
+    private int lives;
     private void Awake()
     {
+        lives = 5;
+        health = lives;
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -59,6 +68,20 @@ public class Player : MonoBehaviour
             Jump();
         if (Input.GetButtonDown("Fire1"))
             Attack();
+
+        if (health > lives)
+            health = lives;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health) // состояние
+                hearts[i].sprite = aliveHeart;
+            else
+                hearts[i].sprite = deadHeart;
+            if (i < lives) // (отображение) 
+                hearts[i].enabled = true;
+            else
+                hearts[i].enabled = false;
+        }
     }
 
     private void Run()
