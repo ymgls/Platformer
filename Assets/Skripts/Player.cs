@@ -1,9 +1,8 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource damageSound;
     [SerializeField] private AudioSource missAttack;
     [SerializeField] private AudioSource attackMob;
-    [SerializeField] private float speed = 3f; // скорость движения
+    [SerializeField] private float speed = 3f; 
     [SerializeField] private int health; 
-    [SerializeField] private float jumpForce = 15f; // сила прыжка
+    [SerializeField] private float jumpForce = 15f; 
     private bool isGrounded = false;
 
     [SerializeField] private Image[] hearts;
@@ -34,6 +33,8 @@ public class Player : MonoBehaviour
     public LayerMask enemy;
 
     private int lives;
+    private const string menuSceneName = "MenuScenes"; 
+
     private void Awake()
     {
         lives = 5;
@@ -77,11 +78,11 @@ public class Player : MonoBehaviour
             health = lives;
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < health) // состояние
+            if (i < health) 
                 hearts[i].sprite = aliveHeart;
             else
                 hearts[i].sprite = deadHeart;
-            if (i < lives) // (отображение) 
+            if (i < lives)  
                 hearts[i].enabled = true;
             else
                 hearts[i].enabled = false;
@@ -139,7 +140,7 @@ public class Player : MonoBehaviour
         if (colliders.Length == 0)
             missAttack.Play();
         else
-        attackMob.Play();
+            attackMob.Play();
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -152,7 +153,26 @@ public class Player : MonoBehaviour
         lives -= 1;
         damageSound.Play();
         Debug.Log(lives);
+
+        if (lives <= 0)
+        {
+            DieAndLoadMenuScene();
+        }
     }
+
+    private void DieAndLoadMenuScene()
+    {
+       
+        Debug.Log("Player died!");
+        StartCoroutine(LoadMenuSceneAfterDelay()); 
+    }
+
+    private IEnumerator LoadMenuSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(2f); // это задержка сцены
+        SceneManager.LoadScene(menuSceneName); 
+    }
+
     private IEnumerator AttackAnimation()
     {
         yield return new WaitForSeconds(0.4f);
