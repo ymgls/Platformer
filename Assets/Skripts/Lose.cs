@@ -1,13 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class DeathZone : MonoBehaviour
+public class Lose : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Entity entity = other.GetComponent<Entity>();
-        if (entity != null && entity.transform.position.y > transform.position.y)
+        if (other.CompareTag("Player"))
         {
-            entity.Die();
+            SceneManager.LoadScene("MenuScenes");
         }
     }
 }
