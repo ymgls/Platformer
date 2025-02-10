@@ -7,7 +7,7 @@ public class LogoMover : MonoBehaviour
     private float speed = 0.5f;
 
     [SerializeField]
-    private float movementRange = 1f;ы
+    private float movementRange = 1f;
 
     private Vector3 startPosition;
     private bool movingUp = true;
