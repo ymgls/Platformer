@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            colliders[i].GetComponent<Entity>().GetDamage();
+            colliders[i].GetComponent<Entity>().TakeDamage();
             StartCoroutine(EnemyOnAttack(colliders[i]));
         }
     }

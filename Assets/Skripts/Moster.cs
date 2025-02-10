@@ -11,7 +11,7 @@ public class Enemy : Entity
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
         dir = transform.right;
-        lives = 5;
+        Lives = 5;
     }
     private void Update()
     {

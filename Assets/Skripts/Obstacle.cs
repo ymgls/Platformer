@@ -6,7 +6,7 @@ public class Obstacle : Entity
 {
     private void Start()
     {
-        lives = 2;
+        Lives = 2;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

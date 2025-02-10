@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
-    protected int lives;
-    public virtual void GetDamage()
+    protected int Lives { get; set; }
+
+    public virtual void TakeDamage()
     {
-        lives--;
-        if (lives < 1)
+        Lives--;
+        if (Lives < 1)
+        {
             Die();
+        }
     }
 
-   
     public virtual void Die()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

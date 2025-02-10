@@ -11,7 +11,7 @@ public class MonsterScan : Entity
     private void Awake()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
-        lives = 2;
+        Lives = 2;
     }
 
    
