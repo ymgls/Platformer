@@ -1,34 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LogoMove : MonoBehaviour
+public class LogoMover : MonoBehaviour
 {
-    public float speed = 0.5f; 
-    private Vector3 startPosition; 
-    private bool movingUp = true; 
-    public float movementRange = 1f; 
+    [SerializeField]
+    private float speed = 0.5f;
 
-    void Start()
+    [SerializeField]
+    private float movementRange = 1f;ы
+
+    private Vector3 startPosition;
+    private bool movingUp = true;
+
+    private void Start()
     {
-        startPosition = transform.position; 
+        startPosition = transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        
         float topBoundary = startPosition.y + movementRange;
         float bottomBoundary = startPosition.y - movementRange;
 
-        if (transform.position.y > topBoundary)
+        if (transform.position.y >= topBoundary)
         {
-            movingUp = false; 
+            movingUp = false;
         }
-        else if (transform.position.y < bottomBoundary)
+        else if (transform.position.y <= bottomBoundary)
         {
-            movingUp = true; 
+            movingUp = true;
         }
 
-        
         if (movingUp)
         {
             transform.Translate(Vector3.up * Time.deltaTime * speed);
