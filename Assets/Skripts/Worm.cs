@@ -1,33 +1,36 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Worm : Entity
 {
-    [SerializeField] private int lives = 3;
-    private void Start()
-    {
-        lives = 2;
-    }
+    [SerializeField]
+    private int maxLives = 3;
 
-    
+    protected override void Start()
+    {
+        base.Start();
+        Lives = maxLives;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Player.Instance.gameObject)
         {
             Player.Instance.GetDamage();
-            lives--;
-            Debug.Log($"Червяк: осталось {lives} жизни.");
+            Lives--;
+            Debug.Log($"Червяк: осталось {Lives} жизни.");
         }
 
-        if (lives < 1)
+        if (Lives < 1)
+        {
             Die();
+        }
     }
-    private void Die()
+
+    public override void Die()
     {
+        base.Die();
         Destroy(gameObject);
     }
-   
 }
