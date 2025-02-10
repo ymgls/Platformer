@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Obstacle : Entity
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Lives = 2;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Player.Instance.gameObject)
