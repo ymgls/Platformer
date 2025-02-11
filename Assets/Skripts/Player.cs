@@ -47,9 +47,9 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        CheckGround();
-    }
+        {
+            CheckGround();
+        }
 
     private void Update()
     {
@@ -65,44 +65,75 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (isGrounded && !isAttacking) State = States.idle;
+        if (isGrounded && !isAttacking)
+        {
+            State = States.idle;
+        }
 
         if (!isAttacking && Input.GetButton("Horizontal"))
+        {
             Run();
+        }
+
         if (!isAttacking && isGrounded && Input.GetButtonDown("Jump"))
+        {
             Jump();
+        }
+
         if (Input.GetButtonDown("Fire1"))
+        {
             Attack();
+        }
 
         if (health > lives)
+        {
             health = lives;
+        }
+
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < health) 
+            if (i < health)
+            {
                 hearts[i].sprite = aliveHeart;
+            }
             else
+            {
                 hearts[i].sprite = deadHeart;
-            if (i < lives)  
+            }
+
+            if (i < lives)
+            {
                 hearts[i].enabled = true;
+            }
             else
+            {
                 hearts[i].enabled = false;
+            }
         }
     }
 
     private void Run()
     {
-        if (isGrounded) State = States.run;
+        if (isGrounded)
+        {
+            State = States.run;
+        }
 
-        Vector3 dir = transform.right * Input.GetAxis("Horizontal");
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
-        sprite.flipX = dir.x < 0.0f;
+        Vector3 direction = transform.right * Input.GetAxis("Horizontal");
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+             transform.position + direction,
+            speed * Time.deltaTime
+        );
+
+        sprite.flipX = direction.x < 0.0f;
     }
-
     private void Jump()
     {
         rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         jumpSound.Play();
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
@@ -110,10 +141,13 @@ public class Player : MonoBehaviour
     }
     private void CheckGround()
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
-        isGrounded = collider.Length > 1;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.3f);
+        isGrounded = colliders.Length > 1;
 
-        if (!isGrounded) State = States.jump;
+        if (!isGrounded)
+        {
+            State = States.jump;
+        }
     }
 
     private States State
