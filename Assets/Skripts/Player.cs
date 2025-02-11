@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        lives = 5;
+        var lives = 5;
         health = lives;
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             State = States.run;
         }
 
-        Vector3 direction = transform.right * Input.GetAxis("Horizontal");
+        var direction = transform.right * Input.GetAxis("Horizontal");
         transform.position = Vector3.MoveTowards(
             transform.position,
              transform.position + direction,
@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
     }
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.3f);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         isGrounded = colliders.Length > 1;
 
         if (!isGrounded)
@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
     }
     private void OnAttack()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(attackpos.position, attackRange, enemy);
+        var colliders = Physics2D.OverlapCircleAll(attackpos.position, attackRange, enemy);
 
         if (colliders.Length == 0)
         {
@@ -179,9 +179,9 @@ public class Player : MonoBehaviour
         {
             attackMob.Play();
 
-            foreach (Collider2D collider in colliders)
+            foreach (var collider in colliders)
             {
-                Entity entity = collider.GetComponent<Entity>();
+                var entity = collider.GetComponent<Entity>();
 
                 if (entity != null)
                 {
@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator EnemyOnAttack(Collider2D enemy)
     {
-        SpriteRenderer enemyColor = enemy.GetComponentInChildren<SpriteRenderer>();
+        var enemyColor = enemy.GetComponentInChildren<SpriteRenderer>();
         enemyColor.color = new Color(1f, 0.4375f, 0.4375f);
         yield return new WaitForSeconds(0.2f);
         enemyColor.color = new Color(1, 1, 1);
