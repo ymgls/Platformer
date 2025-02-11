@@ -32,14 +32,14 @@ public class Player : MonoBehaviour
     public float attackRange;
     public LayerMask enemy;
 
-    // Инициализация поля lives
+   
     private int lives = 5;
 
     private const string menuSceneName = "MenuScenes"; 
 
     private void Awake()
     {
-        // Устанавливаем начальное здоровье равным количеству жизней
+        
         health = lives;
         
         rb = GetComponent<Rigidbody2D>();
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
             health = lives;
         }
 
-        // Обновляем состояние сердец
+        
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health)
@@ -160,8 +160,8 @@ public class Player : MonoBehaviour
         set => anim.SetInteger("state", (int)value);
     }
 
-    // Объединение корутин
-    private IEnumerator AttackSequence()
+    
+    private IEnumerator AttackSequence() //корутмны
     {
         State = States.attack;
         isAttacking = true;
@@ -240,7 +240,7 @@ public class Player : MonoBehaviour
     }
 }
 
-public enum States
+public enum States // иправить синтаксис 
 {
     idle,
     run,
