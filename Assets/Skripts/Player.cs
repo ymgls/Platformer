@@ -152,8 +152,8 @@ public class Player : MonoBehaviour
 
     private States State
     {
-        get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
+        get => (States)anim.GetInteger("state");
+        set => anim.SetInteger("state", (int)value);
     }
     private void Attack()
     {
@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
     }
     public void GetDamage()
     {
-        lives -= 1;
+        lives--;
         damageSound.Play();
         Debug.Log(lives);
 
