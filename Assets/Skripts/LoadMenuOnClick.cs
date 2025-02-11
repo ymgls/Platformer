@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class LoadMenuOnClick : MonoBehaviour
 {
     [SerializeField]
-    private string menuSceneName;
+    private SceneSettings sceneSettings;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && IsPointerOverObject())
         {
-            SceneManager.LoadScene(menuSceneName);
+            SceneManager.LoadScene(sceneSettings.menuSceneName);
         }
     }
 
