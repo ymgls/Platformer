@@ -32,13 +32,16 @@ public class Player : MonoBehaviour
     public float attackRange;
     public LayerMask enemy;
 
-    private int lives;
+    // Инициализация поля lives
+    private int lives = 5;
+
     private const string menuSceneName = "MenuScenes"; 
 
     private void Awake()
     {
-        var lives = 5;
+        // Устанавливаем начальное здоровье равным количеству жизней
         health = lives;
+        
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -47,9 +50,9 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-        {
-            CheckGround();
-        }
+    {
+        CheckGround();
+    }
 
     private void Update()
     {
@@ -90,6 +93,7 @@ public class Player : MonoBehaviour
             health = lives;
         }
 
+        // Обновляем состояние сердец
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health)
@@ -155,18 +159,29 @@ public class Player : MonoBehaviour
         get => (States)anim.GetInteger("state");
         set => anim.SetInteger("state", (int)value);
     }
+
+    // Объединение корутин
+    private IEnumerator AttackSequence()
+    {
+        State = States.attack;
+        isAttacking = true;
+        isRecharged = false;
+
+        yield return new WaitForSeconds(0.4f);
+        isAttacking = false;
+
+        yield return new WaitForSeconds(0.5f);
+        isRecharged = true;
+    }
+
     private void Attack()
     {
         if (isGrounded && isRecharged)
         {
-            State = States.attack;
-            isAttacking = true;
-            isRecharged = false;
-
-            StartCoroutine(AttackAnimation());
-            StartCoroutine(AttackCoolDown());
+            StartCoroutine(AttackSequence());
         }
     }
+
     private void OnAttack()
     {
         var colliders = Physics2D.OverlapCircleAll(attackpos.position, attackRange, enemy);
@@ -191,6 +206,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     public void GetDamage()
     {
         lives--;
@@ -213,17 +229,6 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // это задержка сцены
         SceneManager.LoadScene(menuSceneName); 
-    }
-
-    private IEnumerator AttackAnimation()
-    {
-        yield return new WaitForSeconds(0.4f);
-        isAttacking = false;
-    }
-    private IEnumerator AttackCoolDown()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isRecharged = true;
     }
 
     private IEnumerator EnemyOnAttack(Collider2D enemy)
