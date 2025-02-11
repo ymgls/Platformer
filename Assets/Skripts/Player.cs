@@ -172,14 +172,23 @@ public class Player : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(attackpos.position, attackRange, enemy);
 
         if (colliders.Length == 0)
+        {
             missAttack.Play();
+        }
         else
+        {
             attackMob.Play();
 
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].GetComponent<Entity>().TakeDamage();
-            StartCoroutine(EnemyOnAttack(colliders[i]));
+            foreach (Collider2D collider in colliders)
+            {
+                Entity entity = collider.GetComponent<Entity>();
+
+                if (entity != null)
+                {
+                    entity.TakeDamage(1);
+                    StartCoroutine(EnemyOnAttack(collider));
+                }
+            }
         }
     }
     public void GetDamage()

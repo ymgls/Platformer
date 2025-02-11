@@ -28,7 +28,7 @@ public class Worm : Entity
         }
     }
 
-    public override void Die()
+    protected override void Die()
     {
         base.Die();
         Destroy(gameObject);

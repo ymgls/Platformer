@@ -4,23 +4,33 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    protected int Lives { get; set; }
+    protected int lives;
 
-    public virtual void TakeDamage()
+    public int Lives
     {
-        Lives--;
-        if (Lives < 1)
+        get => lives;
+        set
         {
-            Die();
+            lives = value;
+            if (value < 1)
+            {
+                Die();
+            }
         }
     }
 
-    public virtual void Die()
+    public virtual void TakeDamage(int damageAmount)
+    {
+        Lives -= damageAmount;
+    }
+
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
+
     protected virtual void Start()
     {
-        
+        // Логика инициализации
     }
 }
