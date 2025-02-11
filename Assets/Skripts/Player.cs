@@ -12,19 +12,19 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource attackMob;
     [SerializeField] private float speed = 3f; 
     [SerializeField] private int health; 
-    [SerializeField] private float jumpForce = 15f; 
-    private bool isGrounded = false;
-
+    [SerializeField] private float jumpForce = 15f;
     [SerializeField] private Image[] hearts;
-
     [SerializeField] private Sprite aliveHeart;
     [SerializeField] private Sprite deadHeart;
+    
+    
     public static Player Instance { get; set; }
-
+    
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
-
+    
+    private bool isGrounded = false;
     public bool isAttacking = false;
     public bool isRecharged = true;
 
@@ -162,8 +162,7 @@ public class Player : MonoBehaviour
 
     private void DieAndLoadMenuScene()
     {
-       
-        Debug.Log("Player died!");
+        Debug.Log(" ddied!");
         StartCoroutine(LoadMenuSceneAfterDelay()); 
     }
 

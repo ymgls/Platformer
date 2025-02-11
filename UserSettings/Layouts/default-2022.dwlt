@@ -1000,14 +1000,14 @@ MonoBehaviour:
     - {fileID: -3519621944273970048, guid: 17416659cc086114ba98756fe74c76f2, type: 2}
     - {fileID: -2371162300533299838, guid: e800be75c46849e4d9d424999e8fccc4, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.90291834
+    - e00: 0.88526314
       e01: 0
       e02: 0
-      e03: 115.541504
+      e03: 244.73686
       e10: 0
-      e11: 0.90291834
+      e11: 0.88526314
       e12: 0
-      e13: 164.60498
+      e13: 196.9
       e20: 0
       e21: 0
       e22: 1
@@ -1198,7 +1198,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 26786
+  m_LastSelectedObjectID: 52070
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1304,9 +1304,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6a710000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e6f0ffff36f5ffff16fbffff
+      m_ExpandedIDs: 16fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1375,7 +1375,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Skripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1391,7 +1391,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ca590000
     m_LastClickedID: 22986
-    m_ExpandedIDs: 00000000ae6b0000506c00003c6f0000ec700000ee700000f0700000f2700000f4700000f6700000f8700000fa700000fc700000fe7000000071000002710000047100000671000008710000
+    m_ExpandedIDs: 00000000ae6b0000866c00003c6f0000ec700000ee700000f0700000f2700000f4700000f6700000f8700000fa700000fc700000fe70000000710000027100000471000006710000087100000a710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1416,24 +1416,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 114}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000ae6b0000506c00003c6f0000ec700000ee700000f0700000f2700000f4700000f6700000f8700000fa700000fc700000fe7000000071000002710000047100000671000008710000
+    m_ExpandedIDs: ffffffff00000000ae6b0000866c00003c6f0000ec700000ee700000f0700000f2700000f4700000f6700000f8700000fa700000fc700000fe70000000710000027100000471000006710000087100000a710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Player
-      m_OriginalName: Player
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 19878
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
